@@ -345,8 +345,8 @@ Hints:
     
 2) To know when the box hits the bottom of the screen we will need a variable to calculate the height of the window, at the top where you declare your variables add:
 
-        var boardHeight = jQuery(window).height(); 
-    
+        
+    var boardHeight = jQuery(window).height(); 
 ### Challenge 3) Can you make the box start at a random location on every click?
 
 To create a random numerical value you can use the method `Math.random()` which returns a random digit between 0 and 0.99999. To get a random number between 0 and 100 we can write:
@@ -357,7 +357,7 @@ If the boundaries of our game along the x axis are at `0` and `boardWidth`, how 
 
 Once you generate this random number, where would you use it so that after a box click the position is set to that random value?
 
-### Challenge 3) Can you make the box change color with each click? How about every 3 clicks?
+### Challenge 4) Can you make the box change color with each click? How about every 3 clicks?
 
 The color of the box can be changed using the method `box.css()` like so:
 
