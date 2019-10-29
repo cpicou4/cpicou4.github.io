@@ -26,7 +26,7 @@ var init = function (window) {
         // TODO 2 : Create a function that draws a circle 
         function drawCircle() {
             circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-            physikz.addRandomVelocity(circle, canvas);
+            physikz.addRandomVelocity(circle, canvas, 30, 30);
             view.addChild(circle);
             circles.push(circle);
         }
@@ -34,11 +34,10 @@ var init = function (window) {
         
 
         // TODO 3 / 7 : Call the drawCircle function 
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
+
+        for (var index = 0; index <= 100; index++) { 
+             drawCircle();
+        }
     
         view.addChild(fps);
         app.addUpdateable(fps);
@@ -51,32 +50,35 @@ var init = function (window) {
                 circle.x = 0;
             } 
             // TODO 5a) if the circle has gone past of the LEFT side of the screen then place it on the RIGHT
-            else if ( / * Fill me in! * / ) {
-                
+            else if ( circle.x < 0 ) {
+                circle.x = canvas.width;   
             } 
 
             // TODO 5b) if the circle has gone past of the TOP side of the screen then place it on the BOTTOM
-            if ( / * Fill me in! * / ) {
+            if ( circle.y > canvas.height ) {
+                circle.y = 0;
                 
             }
             // TODO 5c) if the circle has gone past of the BOTTOM side of the screen then place it OFF-SCREEN TOP
-            else if ( / * Fill me in! * / ) {
+            else if ( circle.y < 0 ) {
+                circle.y = canvas.height;
             
             }
             // YOUR TODO 5 CODE ENDS HERE //////////////////////////
-        }
+        };
     
         function update() {
             // TODO 4 : Update the circle's position //
 
-            physikz.updatePosition(circles[0]);
-            physikz.updatePosition(circles[1]);
-            physikz.updatePosition(circles[2]);
-            physikz.updatePosition(circles[3]);
-            physikz.updatePosition(circles[4]);
+            for (var circleNum = 0; circleNum <= 100; circleNum++) {
+                physikz.updatePosition(circles[circleNum]);
+            }
+
             
             // TODO 5 : Call game.checkCirclePosition on your circles.
-           
+           for (var check = 0; check <= 100; check++) {
+               game.checkCirclePosition(circles[check]);
+           }
 
             // TODO 8 : Iterate over the array
            
@@ -93,7 +95,7 @@ var init = function (window) {
         game.update = update;
         
         app.addUpdateable(window.opspark.game);
-    }
+    };
 };
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
