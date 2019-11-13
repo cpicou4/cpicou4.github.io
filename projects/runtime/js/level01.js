@@ -26,8 +26,11 @@ var level01 = function (window) {
         game.setDebugMode(true);
 
         // BEGIN EDITING YOUR CODE HERE
-
-
+        var hitZoneSize = 25;
+        var damageFromObstacle = 10;
+        var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
+        myObstacle.x = 400;
+        myObstacle.y = 100;
     }
 };
 
