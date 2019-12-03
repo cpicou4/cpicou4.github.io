@@ -17,8 +17,9 @@ var level01 = function (window) {
             speed: -3,
             gameItems: [
                 {type: 'sawblade',x:400,y:groundY},
-                {type: 'sawblade',x:600,y:groundY},
-                {type: 'sawblade',x:900,y:groundY}
+                {type: 'sawblade',x:600,y:335},
+                {type: 'sawblade',x:900,y:410},
+                {type: 'box',x:1500,y:groundY - 20}
             ]
         };
         window.levelData = levelData;
@@ -26,12 +27,41 @@ var level01 = function (window) {
         game.setDebugMode(true);
 
         // BEGIN EDITING YOUR CODE HERE
-        var hitZoneSize = 25;
-        var damageFromObstacle = 10;
-        var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
-        myObstacle.x = 400;
-        myObstacle.y = 100;
-    }
+        for (var i = 0; i < levelData.gameItems.length;i++) {
+           var gameItem = levelData.gameItems[i];
+            if (gameItem.type === "sawblade") {
+            createSawBlade(gameItem.x,gameItem.y);
+         }
+            else if (gameItem.type === "box") {
+                createBox(gameItem.x,gameItem.y);
+            }
+        }
+
+        function createSawBlade(x,y) {
+            var hitZoneSize = 25;
+            var damageFromObstacle = 10;
+            var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
+            myObstacle.x = x;
+            myObstacle.y = y;
+            game.addGameItem(myObstacle);
+            var obstacleImage = draw.bitmap('img/sawblade.png');
+            myObstacle.addChild(obstacleImage);
+            obstacleImage.x = -25;
+            obstacleImage.y = -25;
+      }  
+        function createBox(x,y) {
+            var hitZoneSize = 25;
+            var damageFromObstacle = 10;
+            var  myBox = game.createObstacle(hitZoneSize,damageFromObstacle);
+            myBox.x = x;
+            myBox.y = y;
+            game.addGameItem(myBox);
+            var shape = draw.rect(50, 50, '#2d1606');
+            myBox.addChild(shape);
+            shape.x = -25;
+            shape.y = -25;
+        }    
+    };
 };
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
