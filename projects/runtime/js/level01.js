@@ -48,6 +48,12 @@ var level01 = function (window) {
             myObstacle.addChild(obstacleImage);
             obstacleImage.x = -25;
             obstacleImage.y = -25;
+
+            myObstacle.onPlayerCollision = function() {
+                console.log('The sawlade has hit Halle');
+                game.changeIntegrity(-10);
+                myObstacle.fadeOut();
+            }
       }
         function createBox(x,y) {
             var hitZoneSize = 25;
@@ -60,24 +66,59 @@ var level01 = function (window) {
             myBox.addChild(shape);
             shape.x = -25;
             shape.y = -25;
+
+            myBox.onPlayerCollision = function() {
+                console.log('The box has hit Halle');
+                game.changeIntegrity(-10);
+                myBox.fadeOut();
+            }
         }
+        function createEnemy(x, y) {
             var enemy =  game.createGameItem('enemy',25);
             var redSquare = draw.rect(50,50,'red');
             redSquare.x = -25;
             redSquare.y = -25;
             enemy.addChild(redSquare);
-            enemy.x = 400;
-            enemy.y = groundY-50;
+            enemy.x = x;
+            enemy.y = y;
             game.addGameItem(enemy);
             enemy.velocityX = -1;
+            enemy.rotationalVelocity = 10
+
             enemy.onPlayerCollision = function() {
                 console.log('The enemy has hit Halle');
-                game.changeIntegrity(-10);
+                game.changeIntegrity(-15);
+                enemy.fadeOut();
             };
             enemy.onProjectileCollision = function() {
                 console.log('Halle has hit the enemy');
                 game.increaseScore(100);
+                enemy.shrink();
             };
+        };
+            createEnemy(400,groundY-10);
+            createEnemy(800,groundY-100);
+            createEnemy(1200,groundY-50);
+
+        function createReward(x,y){
+            var reward = game.createGameItem('reward', 25);
+            var star = draw.bitmap('img/sawblade.png');
+            star.x = -25;
+            star.y = -25;
+            reward.addChild(star);
+            reward.x = x;
+            reward.y = y;
+            game.addGameItem(reward);
+            reward.velocityX = 0;
+            reward.rotationalVelocity = 0;
+
+            reward.onPlayerCollision = function() {
+                console.log('Halle has collected reward');
+                game.increaseScore(800);
+                reward.shrink();
+            }
+        }
+        createReward(150,groundY-100);
     };
 };
 
