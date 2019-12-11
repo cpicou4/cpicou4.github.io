@@ -102,7 +102,7 @@ var level01 = function (window) {
 
         function createReward(x,y){
             var reward = game.createGameItem('reward', 25);
-            var star = draw.bitmap('img/sawblade.png');
+            var star = draw.bitmap('img/star.png');
             star.x = -25;
             star.y = -25;
             reward.addChild(star);
