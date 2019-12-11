@@ -109,7 +109,7 @@ var level01 = function (window) {
             reward.x = x;
             reward.y = y;
             game.addGameItem(reward);
-            reward.velocityX = 0;
+            reward.velocityX = -1;
             reward.rotationalVelocity = 0;
 
             reward.onPlayerCollision = function() {
