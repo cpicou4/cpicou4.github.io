@@ -118,7 +118,7 @@ var level01 = function (window) {
                 reward.shrink();
             }
         }
-        createReward(1500,groundY-100);
+        createReward(1300,groundY-100);
     };
 };
 
